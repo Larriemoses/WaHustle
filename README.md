@@ -111,6 +111,19 @@ WaHustle is composed of three collaborative layers:
   cloud storage buckets.
 - **Payments:** Paystack / Flutterwave.
 
+## 📲 WhatsApp Cloud API setup (Node.js backend)
+Follow these steps to get a Meta-hosted WhatsApp number ready for WaHustle:
+
+1. **Create/verify your Meta Business account.** Visit [developers.facebook.com/apps](https://developers.facebook.com/apps), log in with a Meta profile, create a Business account if you do not have one, and complete business verification so production sends are allowed.
+2. **Create a WhatsApp app.** In the Meta Developer Console click **Create App → Other → Business**, give it a recognizable name (e.g., `WaHustle Bot`), and add the WhatsApp product under **Add products to your app**.
+3. **Claim or use the test phone number.** In **WhatsApp > API Setup** you receive a temporary test number and phone number ID. For launch, click **Add Phone Number** to register your own WhatsApp-enabled business line and note the resulting **Phone Number ID** and **WhatsApp Business Account ID**.
+4. **Generate an access token.** In the same panel click **Generate token** (or create a permanent system user token in Business Settings → Users → System Users). Give it the `whatsapp_business_messaging` and `whatsapp_business_management` permissions and save the token securely.
+5. **Set up the webhook URL.** Inside **WhatsApp > Configuration** supply your Node.js server URL (e.g., `https://api.yourdomain.com/webhooks/whatsapp`) plus a verify token string. Implement the GET verify handler and POST message handler in Node.js (Express/Nest) to echo the `hub.challenge` for verification.
+6. **Select the callback fields.** Subscribe to `messages`, `message_template_status_update`, and any other events you need, then click **Verify and Save** to activate the webhook.
+7. **Send a test message.** Use the **Send and receive messages** panel (or call `POST /v18.0/{PHONE_NUMBER_ID}/messages`) with the access token to send a test template/text to a verified recipient and ensure your webhook logs the incoming delivery/read updates.
+8. **Store credentials for your Node.js app.** Add the token, phone number ID, WABA ID, and verify token to `.env` variables (e.g., `WAH_WHATSAPP_TOKEN`, `WAH_PHONE_NUMBER_ID`). Load them in your Express/Nest service and reuse them when calling Meta APIs.
+9. **Prepare for production usage.** Complete WhatsApp Business profile details, request template approvals, and rotate temporary tokens to long-lived system user tokens before onboarding real sellers.
+
 ## 🏁 Getting Started (WIP)
 Project scaffolding is still underway. Planned steps:
 1. Provision WhatsApp Cloud API keys and webhook endpoints.
