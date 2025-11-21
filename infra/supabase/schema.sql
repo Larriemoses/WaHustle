@@ -1,0 +1,3 @@
+-- Placeholder - tables and RPCs will be pasted here
+-- Note: the "&" character is literally included here and safe in SQL/comments.
+-- Example: tables & RPCs

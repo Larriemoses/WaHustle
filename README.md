@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 # WaHustle
 
 WhatsApp-first AI assistant and dashboard that helps solo product sellers automate
@@ -134,3 +135,7 @@ Project scaffolding is still underway. Planned steps:
 ---
 **Next up:** finalize architecture decisions, bootstrap the codebase, and start
 shipping the Week 1 foundation tasks.
+=======
+# WaHustle Monorepo
+Scaffold created. Next: fill files with real code.
+>>>>>>> Stashed changes
